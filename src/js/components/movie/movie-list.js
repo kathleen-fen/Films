@@ -6,6 +6,7 @@ export default class MovieList {
     }
 
     DrawToDom(selector){
+        this.selector = selector;
         this.clearList(selector);
         selector.appendChild(this.fragment);
 
@@ -116,6 +117,11 @@ export default class MovieList {
         })
         this.renderMovies(data);
         this.DrawToDom(document.querySelector('.movies'));
+
+    }
+
+    hide() {
+        this.selector.style.display = 'none';
 
     }
 }

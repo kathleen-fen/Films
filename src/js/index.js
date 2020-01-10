@@ -3,6 +3,7 @@ require("./../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 import './../css/style.css'
 import MovieList from './components/movie/movie-list'
 import moviesService from './movie-service'
+import movieCard from './components/movie-card/index'
 const input = document.querySelector('.search-input');
 const movieList = document.querySelector('.movies');
 const list = new MovieList();
@@ -38,3 +39,18 @@ filters.addEventListener('click',(e)=>{
     list.sort(dataAttr);
 
 });
+
+movieList.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = e.target;
+    let id;
+    const link=target.closest('.movie-link');
+    if(!link) {
+        return;
+    }
+    id = link.getAttribute('href');
+    moviesService.getVideoById(id)
+    .then(data=>{
+        movieCard.renderMovie(data);
+    })
+})

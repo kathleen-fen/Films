@@ -1,8 +1,11 @@
 import config from './../../config'
-export default function movie(data) {
+const listWrapper =document.querySelector('.list-wrapper');
+const movieWrapper =document.querySelector('.movie-wrapper');
+function renderMovie(data) {
     
     const mapingData = mapData(data);
     const html = `
+    <a class="back">BACK</a> 
 
     <a href='${data.id}' class="movie-link">
         <h2>${mapingData.name}</h2>
@@ -13,9 +16,12 @@ export default function movie(data) {
         <div>${mapingData.language}</div>
         <div>${mapingData.overview}</div>
         <div>${mapingData.popularity}</div>
+        <div>${mapingData.episodesCount}</div>
+        <div>${mapingData.seasonsCount}</div>
+        <div>${mapingData.homepageUrl}</div>
 
     </a>`;
-    return html;
+    render(html);
 
 }
 
@@ -27,10 +33,10 @@ function mapData(data){
         country: data.origin_country || 'Unknown',
         // imgSrc: config.imgSrc+data.poster_path,
         imgSrc: getPictureUrl(data),
-        homepageUrl: data.profile_path || 'Unknown',
+        homepageUrl: data.homepage || 'Unknown',
         language: data.original_language || 'Unknown',
-        numberofEpisdes: data.vote_count || 'Unknown',
-        number_of_seasons: data.vote_count || 'Unknown',
+        episodesCount: data.number_of_episodes || 'Unknown',
+        seasonsCount: data.number_of_seasons || 'Unknown',
         overview: data.overview || 'Unknown',
         popularity: data.popularity || 'Unknown'
 
@@ -48,4 +54,29 @@ function getPictureUrl(data) {
 
 }
 
+function render(html) {
+    const element = document.createElement('article');
+    
+    
 
+    element.classList.add('movie');
+    element.innerHTML = html;
+    movieWrapper.style.display='block';
+    listWrapper.style.display='none';
+    movieWrapper.innerHTML= '';
+    movieWrapper.appendChild(element);
+
+    const backButton = document.querySelector('.back');
+    backButton.addEventListener('click',back);
+}
+
+function back(){
+    listWrapper.style.display='block';
+    movieWrapper.style.display='none';
+
+}
+
+export default {
+    renderMovie,
+    back
+}

@@ -6,6 +6,7 @@ export default function movie(data) {
     <article class="movie">
         <h2>${mapingData.name}</h2>
         <date>${mapingData.date}</date>
+        <date>${mapingData.realiseDate}</date>
         <div>${mapingData.country}</div>
         <div><img src = '${mapingData.imgSrc}'></div>
         <div>${mapingData.language}</div>
@@ -21,6 +22,7 @@ function mapData(data){
     return {
         name: data.title || data.name || 'Unknown',
         date: data.release_date || data.release_date ||'Unknown',
+        realiseDate: data.release_date || data.release_date ||'Unknown',
         country: data.origin_country || 'Unknown',
         // imgSrc: config.imgSrc+data.poster_path,
         imgSrc: getPictureUrl(data),

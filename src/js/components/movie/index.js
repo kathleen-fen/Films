@@ -20,7 +20,7 @@ export default function movie(data) {
 function mapData(data){
     return {
         name: data.title || data.name || 'Unknown',
-        date: data.release_date ||'Unknown',
+        date: data.release_date || data.release_date ||'Unknown',
         country: data.origin_country || 'Unknown',
         // imgSrc: config.imgSrc+data.poster_path,
         imgSrc: getPictureUrl(data),

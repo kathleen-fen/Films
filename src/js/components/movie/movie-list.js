@@ -1,11 +1,7 @@
 import movie from './index';
 
 export default class MovieList {
-    constructor(data){
-        this.data = data.results;
-        // console.log(this.data);
-        this.renderMovies();
-    }
+    
 
     DrawToDom(selector){
         this.clearList(selector);
@@ -13,7 +9,8 @@ export default class MovieList {
 
     }
 
-    renderMovies() {
+    renderMovies(data) {
+        this.data = data.results;
         this.fragment = document.createDocumentFragment();
         console.log(this.data);
         this.data.forEach(data => {

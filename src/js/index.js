@@ -1,5 +1,5 @@
 // import './../css/bootstrap.min.css'
-require("./../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+// require("./../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 import './../css/style.css'
 import MovieList from './components/movie/movie-list'
 import moviesService from './movie-service'
